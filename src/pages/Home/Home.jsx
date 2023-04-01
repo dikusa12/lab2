@@ -1,10 +1,9 @@
 import React from 'react';
+import CarouselBoxHk from "../../components/Carousel/index.js";
 
 const Home = () => {
     return (
-        <div>
-           home
-        </div>
+        <CarouselBoxHk />
     );
 };
 
