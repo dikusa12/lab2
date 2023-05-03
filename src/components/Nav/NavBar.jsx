@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, FormControl, Container, Form, Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import LoginForm from "../LoginForm/index.js";
 
 const NavBar = () => {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+
+    const handleShow = () => setShow(true);
+
     return (
         <Navbar fixed="top" collapseOnSelect expand="md" bg="dark" variant="dark">
             <Container>
@@ -24,6 +31,8 @@ const NavBar = () => {
                         <Button variant="outline-info">Search</Button>
                     </Form>
                 </Navbar.Collapse>
+                <Button className="ms-2" onClick={handleShow}>Login</Button>
+                <LoginForm show={show} handleClose={handleClose} />
             </Container>
         </Navbar>
     );
