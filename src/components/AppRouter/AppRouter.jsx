@@ -5,6 +5,7 @@ import About from "../../pages/About/index.js";
 import Contacts from "../../pages/Contacts/index.js";
 import Blog from "../../pages/Blog/index.js";
 import SingleBlog from "../../pages/SignelBlog/index.js";
+import SingleTeam from "../../pages/SingleTeam/index.js";
 
 const AppRouter = () => {
     return (
@@ -14,6 +15,7 @@ const AppRouter = () => {
             <Route path="/contacts" element={<Contacts />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<SingleBlog />} />
+            <Route path="/team/:id" element={<SingleTeam />} />
         </Routes>
     );
 };
