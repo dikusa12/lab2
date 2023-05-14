@@ -1,0 +1,12 @@
+svg {
+    max-width: 24px;
+}
+
+.sort {
+    margin: 60px 0 0;
+    cursor: pointer;
+}
+
+.posts, .categories {
+    cursor: pointer;
+}

@@ -17,5 +17,4 @@ export const teams = [
     team: 'Team 3',
     img: 'https://www.kv.by/sites/default/files/pictures/userpictures/2019/11/29/2359/foto6_1.jpg'
   },
-
 ]
