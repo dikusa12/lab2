@@ -6,15 +6,17 @@ import { blogCategory } from "../../utils/blogCategory.js";
 import BlogCategory from "./components/BlogCategory/index.js";
 import './styles.css'
 import Pagination from "../../components/Pagination/index.js";
+import { useTranslation } from "react-i18next";
 
 const Blog = () => {
-  const [category, setCategory] = useState(1)
+  const [currentCategory, setCurrentCategory] = useState(1)
   const [isSortedAsc, setIsSortedAsc] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
+  const { t } = useTranslation()
   const recordsPerPage = 3
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = blogPosts.filter(post => post.categoryId === category).slice(indexOfFirstRecord,
+  const currentRecords = blogPosts.filter(post => post.categoryId === currentCategory).slice(indexOfFirstRecord,
     indexOfLastRecord);
 
   const filterByDate = () => {
@@ -25,16 +27,16 @@ const Blog = () => {
   }
 
   const getTotalPages = () => {
-    return Math.ceil(blogPosts.filter(post => post.categoryId === category).length / recordsPerPage)
+    return Math.ceil(blogPosts.filter(post => post.categoryId === currentCategory).length / recordsPerPage)
   }
 
   const handleClickCategory = (id) => {
-    setCategory(id)
+    setCurrentCategory(id)
   }
 
   return (
     <Container className="pt-5">
-      <div className='sort' onClick={filterByDate}>Sort by date
+      <div className='sort' onClick={filterByDate}>{t("sort")}
         {isSortedAsc ?
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,9 +62,9 @@ const Blog = () => {
       <div className="row mt-5">
         <div className="col posts">
           {currentRecords.map(post =>
-            post.categoryId === category &&
+            post.categoryId === currentCategory &&
             <PostItem
-              category={category}
+              category={currentCategory}
               post={post}
               key={post.id}
             />
@@ -74,6 +76,7 @@ const Blog = () => {
             <ListGroup variant="flush" className='categories'>
               {blogCategory.map(category =>
                 <BlogCategory
+                  active={category.id === currentCategory}
                   onClick={() => handleClickCategory(category.id)}
                   id={category.id}
                   name={category.name}
@@ -84,7 +87,7 @@ const Blog = () => {
           </Card>
           <Card className="mt-3 bg-light">
             <Card.Body>
-              <Card.Title>Slide widget</Card.Title>
+              <Card.Title>{t("slide-widget")}</Card.Title>
               <Card.Text> Lorem </Card.Text>
             </Card.Body>
           </Card>

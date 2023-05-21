@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Container, Form} from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const Contacts = () => {
+    const { t } = useTranslation()
     const [email, setEmail] = useState('')
     const [textarea, setTextArea] = useState('')
     const [emailDirty, setEmailDirty] = useState(false)
     const [textAreaDirty, setTextAreaDirty] = useState(false)
-    const [emailError, setEmailError] = useState('Email не може бути порожнім')
+    const [emailError, setEmailError] = useState(t("email-validation"))
     const [textAreaError, setTextAreaError] = useState('Це поле має бути заповненим')
     const [formValid, setFormValid] = useState(false)
 
@@ -55,7 +57,7 @@ const Contacts = () => {
         <Container>
             <Form className='mt-5 pt-5 w-50'>
                 <Form.Group controlId="fromBasicEmail">
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>{t("email")}</Form.Label>
                     {(emailDirty && emailError) && <div style={{color: "red"}}>{emailError}</div>}
                     <Form.Control
                         onChange={e => emailHandler(e)}
@@ -63,12 +65,12 @@ const Contacts = () => {
                         value={email}
                         onBlur={e => blurHandler(e)}
                         type="email"
-                        placeholder="Enter email"
+                        placeholder={t("email")}
                     />
-                    <Form.Text className="text-muted"> We'll never share your email with anyone else. </Form.Text>
+                    <Form.Text className="text-muted">{t("never-share")}</Form.Text>
                 </Form.Group>
                 <Form.Group controlId="fromBasicPassword">
-                    <Form.Label>Example textarea</Form.Label> {(textAreaError && textAreaDirty) &&
+                    <Form.Label>{t("textarea")}</Form.Label> {(textAreaError && textAreaDirty) &&
                     <div style={{color: "red"}}>{textAreaError}</div>}
                     <Form.Control
                         as='textarea'
@@ -79,9 +81,9 @@ const Contacts = () => {
                     />
                 </Form.Group>
                 <Form.Group controlId="fromBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
+                    <Form.Check type="checkbox" label={t("check")} />
                 </Form.Group>
-                <Button disabled={!formValid} variant="primary" type="submit"> Submit </Button>
+                <Button disabled={!formValid} variant="primary" type="submit">{t("submit")}</Button>
             </Form>
         </Container>
     );

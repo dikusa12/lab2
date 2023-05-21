@@ -1,27 +1,29 @@
 import React from 'react';
 import { Container, Nav, Col, Row, Tab } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
+    const { t } = useTranslation()
     return (
         <Container>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                 <Row>
                     <Col sm={3}>
-                        <Nav variant="pills" className="flex-column mt-2">
+                        <Nav variant="pills" className="flex-column mt-5 pt-5">
                             <Nav.Item>
-                                <Nav.Link eventKey="first">Design</Nav.Link>
+                                <Nav.Link eventKey="first">{t("design")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="second">Team</Nav.Link>
+                                <Nav.Link eventKey="second">{t("team")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="third">Program</Nav.Link>
+                                <Nav.Link eventKey="third">{t("program")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="fourth">Frameworks</Nav.Link>
+                                <Nav.Link eventKey="fourth">{t("frameworks")}</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="fifth">Library</Nav.Link>
+                                <Nav.Link eventKey="fifth">{t("library")}</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Col>

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const LoginForm = ({ show, handleClose }) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailDirty, setEmailDirty] = useState(false)
   const [passwordDirty, setPasswordDirty] = useState(false)
-  const [emailError, setEmailError] = useState('Email не може бути порожнім')
-  const [passwordError, setPasswordError] = useState('Пароль не може бути порожнім')
+  const [emailError, setEmailError] = useState(t("email-validation"))
+  const [passwordError, setPasswordError] = useState(t("password-validation"))
   const [formValid, setFormValid] = useState(false)
 
   const emailHandler = (e) => {
@@ -25,7 +27,7 @@ const LoginForm = ({ show, handleClose }) => {
     if (e.target.value.length < 3 || e.target.length > 8) {
       setPasswordError('Пароль повинен мати не менше 3 і не більше 8 символів')
       if (!e.target.value) {
-        setPasswordError('Пароль не може бути порожнім')
+        setPasswordError(t("password-validation"))
       }
     } else {
       setPasswordError('')
@@ -54,12 +56,12 @@ const LoginForm = ({ show, handleClose }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Log in</Modal.Title>
+        <Modal.Title>{t("login")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group controlId="fromBasicEmail">
-            <Form.Label>Email Address</Form.Label>
+            <Form.Label>{t("email")}</Form.Label>
             {(emailDirty && emailError) && <div style={{ color: "red" }}>{emailError}</div>}
             <Form.Control
               onChange={e => emailHandler(e)}
@@ -67,26 +69,26 @@ const LoginForm = ({ show, handleClose }) => {
               value={email}
               onBlur={e => blurHandler(e)}
               type="email"
-              placeholder="Enter email"
+              placeholder={t("email")}
             />
-            <Form.Text className="text-muted"> We'll never share your email with anyone else. </Form.Text>
+            <Form.Text className="text-muted"> {t("never-share")} </Form.Text>
           </Form.Group>
           <Form.Group controlId="fromBasicPassword">
-            <Form.Label>Password</Form.Label> {(passwordError && passwordDirty) &&
+            <Form.Label>{t("password")}</Form.Label> {(passwordError && passwordDirty) &&
             <div style={{ color: "red" }}>{passwordError}</div>}
             <Form.Control
               onChange={e => passwordHandler(e)}
               name="password"
-              value={password}
+              value=""
               onBlur={e => blurHandler(e)}
               type="password"
-              placeholder="Enter password"
+              placeholder={t("password")}
             />
           </Form.Group>
           <Form.Group controlId="fromBasicCheckbox">
-            <Form.Check type="checkbox" label="Remember me" />
+            <Form.Check type="checkbox" label={t("remember")} />
           </Form.Group>
-          <Button disabled={!formValid} variant="primary" type="submit"> Submit </Button>
+          <Button disabled={!formValid} variant="primary" type="submit">{t("submit")}</Button>
         </Form>
       </Modal.Body>
     </Modal>

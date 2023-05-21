@@ -1,9 +1,9 @@
 import React from 'react';
 import {ListGroup} from "react-bootstrap";
 
-const BlogCategory = ({ name, onClick }) => {
+const BlogCategory = ({ name, onClick, active }) => {
     return (
-        <ListGroup.Item onClick={onClick}>{name}</ListGroup.Item>
+        <ListGroup.Item className={active && 'active'} onClick={onClick}>{name}</ListGroup.Item>
     );
 };
 
