@@ -62,7 +62,7 @@ const LoginForm = ({ show, handleClose }) => {
         <Form>
           <Form.Group controlId="fromBasicEmail">
             <Form.Label>{t("email")}</Form.Label>
-            {(emailDirty && emailError) && <div style={{ color: "red" }}>{emailError}</div>}
+            {(emailDirty && emailError) && <div data-testid='email-error' style={{ color: "red" }}>{emailError}</div>}
             <Form.Control
               onChange={e => emailHandler(e)}
               name="email"
@@ -75,11 +75,11 @@ const LoginForm = ({ show, handleClose }) => {
           </Form.Group>
           <Form.Group controlId="fromBasicPassword">
             <Form.Label>{t("password")}</Form.Label> {(passwordError && passwordDirty) &&
-            <div style={{ color: "red" }}>{passwordError}</div>}
+            <div data-testid='password-error' style={{ color: "red" }}>{passwordError}</div>}
             <Form.Control
               onChange={e => passwordHandler(e)}
               name="password"
-              value=""
+              value={password}
               onBlur={e => blurHandler(e)}
               type="password"
               placeholder={t("password")}
